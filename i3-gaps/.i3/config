@@ -1,0 +1,326 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+#
+# This config file uses keycodes (bindsym) and was written for the QWERTY
+# layout.
+#
+# To get a config file with the same key positions, but for your current
+# layout, use the i3-config-wizard
+#
+set $mod Mod4
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+
+floating_modifier $mod
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:monospace 8
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango:DejaVu Sans Mono 8
+
+# Before i3 v4.8, we used to recommend this one as the default:
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
+
+# color
+
+#arch blue 		#1793D1
+#debian red		#D70A53
+#manjaro green     #8CBC65
+#matrix green		#00FF00
+#mint green		#5FAA24
+#ubuntu orange  	#F37320
+#set $color #1793D1
+
+# set solarized color-scheme
+
+#set $black	#002B36
+#set $white	#839496
+#set $gray	#CCCCCC
+#set $darkgray	#666666
+#set $green 	#799F26
+#set $blue	#4D73AA
+#set $purple	#8473A7
+#set $red	#B58900
+#set $orange	#E59847
+#set $cyan	#2AA198
+#set $dark	#00252E
+
+# use these keys for focus, movement, and resize directions when reaching for
+# the arrows is not convenient
+set $up l
+set $down k
+set $left j
+set $right semicolon
+
+# use Mouse+Mod4 to drag floating windows to their wanted position
+floating_modifier Mod4
+
+# start a terminal
+# Start Terminal in new Window
+bindsym Mod4+Return exec urxvt #-e bash -c "xdotool key Super_L+Shift+space&&bash"
+
+# kill focused window
+bindsym Mod4+Shift+q kill
+
+# start dmenu (a program launcher)
+bindsym Mod4+d exec i3-dmenu-desktop
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym Mod4+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+bindsym Mod4+$left focus left
+bindsym Mod4+$down focus down
+bindsym Mod4+$up focus up
+bindsym Mod4+$right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym Mod4+Left focus left
+bindsym Mod4+Down focus down
+bindsym Mod4+Up focus up
+bindsym Mod4+Right focus right
+
+# move focused window
+bindsym Mod4+Shift+$left move left
+bindsym Mod4+Shift+$down move down
+bindsym Mod4+Shift+$up move up
+bindsym Mod4+Shift+$right move right
+
+# alternatively, you can use the cursor keys:
+bindsym Mod4+Shift+Left move left
+bindsym Mod4+Shift+Down move down
+bindsym Mod4+Shift+Up move up
+bindsym Mod4+Shift+Right move right
+
+# split in horizontal orientation
+bindsym Mod4+h split h
+
+# split in vertical orientation
+bindsym Mod4+v split v
+
+# enter fullscreen mode for the focused container
+bindsym Mod4+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym Mod4+s layout stacking
+bindsym Mod4+w layout tabbed
+bindsym Mod4+e layout toggle split
+
+# toggle tiling / floating
+bindsym Mod4+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym Mod4+space focus mode_toggle
+
+# focus the parent container
+bindsym Mod4+a focus parent
+
+# focus the child container
+#bindsym Mod4+d focus child
+
+# move the currently focused window to the scratchpad
+bindsym Mod4+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym Mod4+minus scratchpad show
+
+# Name the workspaces
+set $tag1 "terminal"
+set $tag2 "browser"
+set $tag3 "stuff"
+
+# switch to workspace
+bindsym Mod4+1 workspace 1 $tag1
+bindsym Mod4+2 workspace 2 $tag2
+bindsym Mod4+3 workspace 3 $tag3
+bindsym Mod4+4 workspace 4
+bindsym Mod4+5 workspace 5
+bindsym Mod4+6 workspace 6
+bindsym Mod4+7 workspace 7
+bindsym Mod4+8 workspace 8
+bindsym Mod4+9 workspace 9
+bindsym Mod4+0 workspace 10
+
+# move focused container to workspace
+bindsym Mod4+Shift+1 move container to workspace 1 $tag1
+bindsym Mod4+Shift+2 move container to workspace 2 $tag2
+bindsym Mod4+Shift+3 move container to workspace 3 $tag3
+bindsym Mod4+Shift+4 move container to workspace 4
+bindsym Mod4+Shift+5 move container to workspace 5
+bindsym Mod4+Shift+6 move container to workspace 6
+bindsym Mod4+Shift+7 move container to workspace 7
+bindsym Mod4+Shift+8 move container to workspace 8
+bindsym Mod4+Shift+9 move container to workspace 9
+bindsym Mod4+Shift+0 move container to workspace 10
+
+# reload the configuration file
+bindsym Mod4+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym Mod4+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym Mod4+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# hide Window-Borders
+for_window [class="^.*"] border pixel 0
+#smart_gaps on
+gaps inner 8
+gaps outer 0
+
+set $bg-color 	         #383C4A
+set $bd-color		     #84927D
+set $inactive-bg-color   #383C4A
+set $inactive-bd-color	 #383C4A
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+#				border			background		text	 	 	indicator	child border 
+#client.focused          	$bd-color		$bg-color		$text-color   		$bd-color	$bd-color  
+#client.unfocused        	$bg-color		$bg-color 		$inactive-text-color 	$bg-color	$bg-color
+#client.focused_inactive		$bg-color		$bg-color	 	$inactive-text-color 	$bg-color	$bg-color
+#client.urgent           	$bg-color   		$bg-color		$text-color		$bg-color	$bg-color
+#client.background  					$bg-color
+
+
+# hide Borders in new Window
+new_window normal 0
+new_float normal 0
+
+# screen brightness 
+bindsym XF86MonBrightnessUp exec backlight_up  
+bindsym XF86MonBrightnessDown exec backlight_down
+
+# audio alsa mediakeys
+# increase volume
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
+# decrease volume
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
+# mute volume
+bindsym XF86AudioMute exec amixer -q set Master mute
+# pause / play / next / previous
+bindsym XF86AudioPlay exec mocp -p
+bindsym Mod4+XF86AudioPlay exec mocp -P
+bindsym XF86AudioNext exec mocp -f
+bindsym XF86AudioPrev exec mocp -r
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s widtqh.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym $left       resize shrink width 10 px or 10 ppt
+        bindsym $down       resize grow height 10 px or 10 ppt
+        bindsym $up         resize shrink height 10 px or 10 ppt
+        bindsym $right      resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Up          resize shrink height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym Mod4+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+#bar {
+#	status_command i3status
+#		colors { 
+#			statusline #c5c8c6
+#			}
+#i3bar position
+#position top
+# Using custom i3status.conf
+#status_command i3status -c ~/.i3/i3status.conf
+#}
+
+bindsym $mod+shift+x exec i3lock -i ~/.i3/lock.png
+
+# assign special properties
+for_window [class="^Pavucontrol$"] floating enable
+for_window [title="MonoDevelop External Console"] floating enable
+for_window [class="^Shutter$"] floating enable
+# Enables floating windows of the chrome extension "Videostream for Chromecast"
+for_window [instance="^crx_cnciopoikihiagdjbjpnocolokfelagl$"] floating enable
+# The Chrome "Page Unresponsive" dialog is not floating...
+for_window [title="Page Unresponsive"] floating enable
+# Share your screen from Google Cast extension
+for_window [title="Share your screen - Google Cast"] floating enable
+# TeamSpeak new features window
+for_window [class="^TeamSpeak 3$" title="^New TeamSpeak Features"] floating enable
+# Android Device Monitor startup window
+for_window [class="^Monitor$" instance="^Monitor$" title="^Monitor$"] floating enable
+# chromeIPass "No logins found." window
+for_window [title="^chromeIPass$"] floating enable
+
+#######################################################################
+# automatically start i3-config-wizard to offer the user to create a
+# keysym-based config which used their favorite modifier (alt or windows)
+#
+# i3-config-wizard will not launch if there already is a config file
+# in ~/.i3/config.
+#
+# Please remove the following exec line:
+#######################################################################
+exec i3-config-wizard
+#exec xcompmgr -CcfF -I-.015 -O-.03 -D4 -t-15 -l-15 -r12 -o.75
+exec polybar own_i3 2>&1 &
+exec --no-startup-id /usr/bin/compton --config ~/.i3/compton.conf
+exec mocp -S #Musicplayer in Servermode
+exec wallpaper &
+#exec xautolock -detectsleep -time 45 -locker "i3lock -i ~/.i3/lock.png" -notify 30 -notifier "/usr/bin/notify-send -u critical -t 10000 'Bildschirm wird in 30 Sekunden gesperrt'" &
+exec aplay /usr/share/i3sounds/startup.wav
