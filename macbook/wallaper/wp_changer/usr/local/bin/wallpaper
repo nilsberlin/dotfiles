@@ -1,0 +1,13 @@
+#!/bin/bash
+
+while true; do
+a=$(find /home/invadersim/Bilder/wallpapers/random/ -name '*.jp*' | wc -l)
+b=$(echo $(($RANDOM % $a+1))) #zeigt sonst alles inkl. 0 an. Um ab 1 beginnen zu können +1
+#c=/home/invadersim/Bilder/wallpapers/
+d=$( find /home/invadersim/Bilder/wallpapers/random/ -name '*.jp*' | tail -$b | head -1 | egrep -o '\b([[:alnum:]]|[[:punct:]])*\.jp.*')
+	feh --bg-scale $(echo /$d);
+	sleep 86400;
+done
+
+exit 0
+
